@@ -55,7 +55,7 @@ function Signin() {
         <button className="btn waves-effect waves-light blue" type="submit" onClick={() => PostData()}>
           Sign in
         </button>
-        <h5>Dont have an account? <Link to="/register">Sign Up</Link></h5>
+        <h5>Dont have an account? <Link to="/signup">Sign Up</Link></h5>
       </div>
     </div>
   )
