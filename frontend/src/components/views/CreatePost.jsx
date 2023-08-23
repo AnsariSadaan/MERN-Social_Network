@@ -27,11 +27,9 @@ function CreatePost() {
   }).then(res=>res.json)
   .then(data=>{ 
     if(data.error){
-        // console.log("data:"+data);
         M.toast({html: "Not Posted", classes:"#b71c1c red darken-4"})
       }
       else{
-        // console.log("data:"+data);
         M.toast({html:"Posted", classes:"#43a047 green darken-1"})
         navigate("/");
       }
@@ -53,11 +51,10 @@ function CreatePost() {
     }) // fetch (para1, para2)
       .then(res => res.json()) // we get response from cloudinary 
       .then(data => {
-        // console.log(data); //what we get data from cloud
+         //what we get data from cloud
         setUrl(data.url);
       })
       .catch(err => {   // this err is from developer side== basically exception handling
-        // console.log(data);
         console.log(err)
       })
   }

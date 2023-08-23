@@ -21,7 +21,6 @@ function Home() {
         }
 
         const result = await response.json();
-        // console.log(result);
         setData(result.posts);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -83,8 +82,6 @@ function Home() {
       }
 
       const result = await response.json();
-      console.log(result);
-
       const newData = data.map((item) => {
         if (item._id === result._id) {
           return result;
@@ -115,7 +112,6 @@ function Home() {
       })
     }).then(res => res.json())
       .then(result => {
-        console.log(result)
         const newData = data.map(item => {
           if (item._id == result._id) {
             return result
@@ -145,7 +141,6 @@ function Home() {
         }
       })
       .then((result) => {
-        console.log(result);
         const newData = data.filter(item => {
           return item._id !== result._id
         })
@@ -197,7 +192,6 @@ function Home() {
                 })}
                 <form onSubmit={(e) => {
                   e.preventDefault();
-                  // console.log(e.target[0].value, item._id);
                   makeComment(e.target[0].value, item._id);
                 }}>
                   <input type="text" placeholder="add a comment" />

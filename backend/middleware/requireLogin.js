@@ -10,7 +10,7 @@ export const requireLogin = (req, res, next) => {
         return res.status(401).json({ error: "From Authtn: You must be logged in!" })
     }
     const token = authorization.replace("Bearer ", "")
-    jwt.verify(token, proces.env.SecretValues, (err, payload) => {
+    jwt.verify(token, process.env.SecretValues, (err, payload) => {
         if (err) {
             return res.status(401).json({ error: "From JWT: You must be logged in!" });
         }

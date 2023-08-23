@@ -4,7 +4,6 @@ import { UserContext } from '../../App.jsx';
 function Profile() {
   const [mypics, setmyPics] = useState([]);
   const { state, dispatch } = useContext(UserContext);
-  // console.log(dispatch)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,7 +14,6 @@ function Profile() {
         });
 
         const result = await response.json();
-        // console.log(result);
         setmyPics(result.mypost);
       } catch (error) {
         console.error("Failed to fetch and process the data:", error);

@@ -43,7 +43,6 @@ function Profile() {
       })
     }).then(res => res.json())
       .then(data => {
-        console.log(data)
         dispatch({ type: "UPDATE", payload: { following: data.following, followers: data.followers } })
         localStorage.setItem("user", JSON.stringify(data))
         setProfile((prevState) => {
@@ -101,7 +100,7 @@ function Profile() {
           <div style={{ display: "flex", justifyContent: "space-around", margin: "18px -7px", borderBottom: "1px solid grey" }}>
             <div>
               <img style={{ width: "160px", height: "160px", borderRadius: "80px" }}
-                src="" alt="" />
+                src="../../assets/profile.png" alt="profile" />
             </div>
             <div>
               <h4>{userProfile.user.name}</h4>
