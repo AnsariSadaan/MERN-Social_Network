@@ -13,7 +13,7 @@ function CreatePost() {
 
   useEffect(()=>{
     if(url){
-      fetch("http://localhost:5000/createpost",{
+      fetch("https://mern-social-network-gamma.vercel.app/createpost",{
         method:"post",
         headers: {
           "Content-Type":"application/json",

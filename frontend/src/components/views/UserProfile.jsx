@@ -63,7 +63,7 @@ function Profile() {
   }
 
   const unfollowUser = () => {
-    fetch('http://localhost:5000/unfollow', {
+    fetch('https://mern-social-network-gamma.vercel.app/unfollow', {
       method: "put",
       headers: {
         "Content-Type": "application/json",
