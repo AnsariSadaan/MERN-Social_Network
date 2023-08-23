@@ -2,7 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import "../models/user.js"
-import bcryptjs from "bcryptjs";
+import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
 const routerAuth = express.Router();
@@ -21,7 +21,7 @@ routerAuth.post("/signup", (req, res) => {
             if (savedUser) {
                 return res.status(422).json({ error: "User already Exists with that email" });
             }
-            bcryptjs.hash(password, 12)
+            bcrypt.hash(password, 12)
                 .then(hashedpassword => {
                     const user = new User({
                         name: name,
@@ -54,7 +54,7 @@ routerAuth.post("/signin", (req, res) => {
         //recieving from client - wrong Email ID
         return res.status(422).json({ error: "Invalid Email or Password" });
       }
-      bcryptjs.compare(password,savedUser.password)
+      bcrypt.compare(password,savedUser.password)
       .then(doMatch=>{
         if(doMatch){
           // res.json({message:"From Server: Successully Signed In"})
