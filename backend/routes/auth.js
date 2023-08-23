@@ -1,47 +1,76 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import '../../backend/models/user.js'
-import bcryptjs from 'bcryptjs';
+//PATH : server/models/auth.js
+import express from "express";
+import mongoose from "mongoose";
+import "../models/user.js"
+import bcryptjs from "bcryptjs";
+import jwt from 'jsonwebtoken';
+import { SecretValues } from "../keys.js";
 
-const router = express.Router();
-const User = mongoose.model('User');
+const routerAuth = express.Router();
+const User = mongoose.model("User");
 
-router.get('/', (req, res) => {
-    res.send("hello from routes");
-})
 
-router.post('/signup', (req, res) => {
+//SignuUp
+
+routerAuth.post("/signup", (req, res) => {
     const { name, email, password } = req.body;
-    if (!email || !password || !name) {
-        res.status(422).json({ error: "please add alll details" })
+    if (!name || !email || !password) {
+        return res.status(422).json({ error: "SignUp:- Please add all details" })
     }
     User.findOne({ email: email })
         .then((savedUser) => {
             if (savedUser) {
-                return res.json({ error: "User already exists with that email" })
+                return res.status(422).json({ error: "User already Exists with that email" });
             }
             bcryptjs.hash(password, 12)
                 .then(hashedpassword => {
                     const user = new User({
-                        name:name,
-                        email:email,
+                        name: name,
+                        email: email,
                         password: hashedpassword
                     })
                     user.save()
                         .then(user => {
-                            res.json({ message: "Saved successfully on database" })
+                            res.json({ message: "Account Created Successfully"});
                         })
                         .catch(err => {
-                            console.log(err)
+                            console.log(err);
                         })
-                })
-
+            })
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
-
 });
 
+//SignIn
 
-export default router;
+routerAuth.post("/signin", (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(422).json({ error: "SignIn:- Please add all details" }); //recieving from client - blank details
+    }
+    User.findOne({ email: email }).then((savedUser) => {
+      if (!savedUser) {
+        //recieving from client - wrong Email ID
+        return res.status(422).json({ error: "Invalid Email or Password" });
+      }
+      bcryptjs.compare(password,savedUser.password)
+      .then(doMatch=>{
+        if(doMatch){
+          // res.json({message:"From Server: Successully Signed In"})
+          const token = jwt.sign({_id:savedUser._id}, SecretValues);
+          const {_id,name, email} = savedUser;
+          res.json({token, user:{_id,name,email}});
+          // console.log(token);
+        }
+        else{
+          return res.status(422).json({ error: "Invalid Email or Password" });
+        }
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    });
+  });
+export default routerAuth;

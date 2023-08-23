@@ -1,37 +1,28 @@
-import express , { json, urlencoded } from 'express';
-import cors from 'cors';
-import {connect} from 'mongoose';
-import router from './routes/auth.js';
-import './models/user.js';
+ import express  from 'express';
 const app = express();
-const PORT = 6969;
+import mongoose from 'mongoose';
+import cors from 'cors';
+import routerAuth from './routes/auth.js';
+import routerPost from './routes/post.js';
+import routerUser from './routes/user.js';
 
-const customMiddleware = (req, res, next)=>{
-    console.log("Middleware Executed!!!");
-    next();
-}
 
-app.use(express.json());
-app.use(router);
-app.use(json({limit: "30mb", extended: true}));
-app.use(urlencoded({limit: "30mb", extended: true}));
+const PORT = 5000;
+
 app.use(cors());
-
-// app.use(customMiddleware);
-
-app.get('/', (req, res)=>{
-    res.send('<h1>i am home page from the backend</h1>')
-    console.log("hello from /");
-})
-
-app.get('/about', customMiddleware, (req, res) => {
-    res.send('<h1>i am about page from the backend</h1>')
-})
-
-const CONNECTION_URL = "mongodb+srv://socialnetwork:socialnetwork@socialnetwork.bngowcu.mongodb.net/";
-connect(CONNECTION_URL).then(() => { console.log(`server database is running on port no: ${PORT}`)});
+app.use(express.json());
+app.use(routerAuth);
+app.use(routerPost);
+app.use(routerUser);
 
 
-app.listen(PORT, ()=>{
-    console.log(`server is running on port no: ${PORT}`)
+
+const CONNECTION_URL = 'mongodb+srv://socialnetwork:socialnetwork@cluster0.fxkbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'; 
+
+mongoose.connect(CONNECTION_URL)
+    .then(() => console.log("Database Connected Successfully"))
+    .catch((err) => { console.log(err) })
+
+app.listen(PORT,()=>{
+    console.log("SERVER RUNNING ON:",PORT) //Terminal
 })
