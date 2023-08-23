@@ -10,7 +10,7 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://mern-social-network-phi.vercel.app/allpost", {
+        const response = await fetch("http://localhost:5000/allpost", {
           headers: {
             "Authorization": "Bearer " + localStorage.getItem("jwt"),
           },
@@ -34,7 +34,7 @@ function Home() {
 
   const likePost = async (id) => {
     try {
-      const response = await fetch('https://mern-social-network-phi.vercel.app/like', {
+      const response = await fetch('http://localhost:5000/like', {
         method: "put",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ function Home() {
 
   const unlikePost = async (id) => {
     try {
-      const response = await fetch("https://mern-social-network-phi.vercel.app/unlike", {
+      const response = await fetch("http://localhost:5000/unlike", {
         method: "put",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Home() {
 
 
   const makeComment = (text, postId) => {
-    fetch('https://mern-social-network-phi.vercel.app/comment', {
+    fetch('http://localhost:5000/comment', {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +127,7 @@ function Home() {
 
 
   const deletePost = (postid) => {
-    fetch(`https://mern-social-network-phi.vercel.app/deletepost/${postid}`, {
+    fetch(`http://localhost:5000/deletepost/${postid}`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

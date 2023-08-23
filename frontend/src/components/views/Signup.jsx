@@ -16,7 +16,7 @@ function Signup() {
       return;
     }
 
-    fetch("https://mern-social-network-phi.vercel.app/signup", {
+    fetch("http://localhost:5000/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json"

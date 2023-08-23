@@ -6,7 +6,7 @@ export default defineConfig({
   // ... other config properties
   server: {
     proxy: {
-      '/backend': 'https://mern-social-network-phi.vercel.app/'
+      '/backend': 'http://localhost:5000'
     }
   },
   plugins: [react()],
