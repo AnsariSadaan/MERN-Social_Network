@@ -19,6 +19,10 @@ app.use(routerAuth);
 app.use(routerPost);
 app.use(routerUser);
 
+app.get('/post', (req,res)=>{
+    res.send("this is for checking")
+})
+
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Database Connected Successfully"))
     .catch((err) => { console.log(err) })
