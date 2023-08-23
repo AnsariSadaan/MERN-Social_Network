@@ -49,7 +49,7 @@ function Signin() {
   return (
     <div className="mycard">
       <div className="card auth-card input-field">
-        <h2>InstaBook</h2>
+        <h2>MyInstaBook</h2>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button className="btn waves-effect waves-light blue" type="submit" onClick={() => PostData()}>

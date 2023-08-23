@@ -30,12 +30,12 @@ function Profile() {
       <div style={{ display: "flex", justifyContent: "space-around", margin: "18px -7px", borderBottom: "1px solid grey" }}>
         <div>
           <img style={{ width: "160px", height: "160px", borderRadius: "80px" }}
-            src="https://res.cloudinary.com/instabookcloudsadaan/image/upload/v1685005976/ndwxel46yife0clgeyex.jpg" alt="Profile Pic" />
+            src="" alt="" />
         </div>
         <div>
           <h4>{state?state.name:"loading"}</h4>
           <div style={{ display: "flex", justifyContent: "space-between", width: "110%" }}>
-            <h5>10 Posts</h5>
+            <h5>2 Posts</h5>
             <h5>300 Followers</h5>
             <h5>200 Following</h5>
           </div>

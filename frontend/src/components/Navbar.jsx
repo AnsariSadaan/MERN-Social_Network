@@ -28,7 +28,7 @@ function Navbar() {
   return (
     <nav>
       <div className="nav-wrapper blue">
-        <Link to="/" className="brand-logo left">InstaBook</Link>
+        <Link to="/" className="brand-logo left">MyInstaBook</Link>
         <ul id="nav-mobile" className="right">
           {renderList()}
         </ul>
