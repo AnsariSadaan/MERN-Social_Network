@@ -18,7 +18,7 @@ function Signin() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/signin", {
+      const response = await fetch("https://mern-social-network-phi.vercel.app/signin", {
         method: "post",
         headers: {
           "Content-Type": "application/json"

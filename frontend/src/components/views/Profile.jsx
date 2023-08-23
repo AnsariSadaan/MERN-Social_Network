@@ -7,7 +7,7 @@ function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/mypost', {
+        const response = await fetch('https://mern-social-network-phi.vercel.app/mypost', {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("jwt")
           },

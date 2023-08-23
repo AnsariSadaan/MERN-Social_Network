@@ -10,7 +10,7 @@ function Profile() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/user/${userid}`, {
+        const response = await fetch(`https://mern-social-network-phi.vercel.app/user/${userid}`, {
           headers: {
             "Authorization": "Bearer " + localStorage.getItem("jwt")
           },
@@ -32,7 +32,7 @@ function Profile() {
 
 
   const followUser = () => {
-    fetch('http://localhost:5000/follow', {
+    fetch('https://mern-social-network-phi.vercel.app/follow', {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function Profile() {
   }
 
   const unfollowUser = () => {
-    fetch('http://localhost:5000/unfollow', {
+    fetch('https://mern-social-network-phi.vercel.app/unfollow', {
       method: "put",
       headers: {
         "Content-Type": "application/json",
