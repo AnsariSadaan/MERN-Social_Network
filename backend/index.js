@@ -18,7 +18,7 @@ app.use(routerPost);
 app.use(routerUser);
 
 const allowedOrigins = [
-    'https://social-network-nine-pink.vercel.app',
+    'https://social-network-blond.vercel.app/',
     'https://another-allowed-origin.com'
 ];
 
