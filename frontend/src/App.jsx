@@ -56,11 +56,3 @@ function App() {
 }
 
 export default App
-
-
-
-
-
-
-
-// sir mera posts table mein kuch entry show nae kar raha hai 
