@@ -11,6 +11,10 @@ const User = mongoose.model("User");
 
 //SignuUp
 
+routerAuth.get("/", (req, res)=>{
+    res.send({message: "this is testing routes for backend"})
+}
+
 routerAuth.post("/signup", (req, res) => {
     const { name, email, password } = req.body;
     if (!name || !email || !password) {
