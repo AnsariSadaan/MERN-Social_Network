@@ -16,7 +16,7 @@ app.use(routerPost);
 app.use(routerUser);
 
 const allowedOrigins = [
-    'https://social-network-blond.vercel.app/',
+    'https://social-network-blond.vercel.app',
     'https://another-allowed-origin.com'
 ];
 
@@ -25,9 +25,14 @@ app.use((req, res, next) => {
     if (allowedOrigins.includes(origin)) {
         res.header('Access-Control-Allow-Origin', origin);
     }
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        return res.status(200).json({});
+    }
     next();
 });
+
 
 
 mongoose.connect(process.env.MONGO_URL)
