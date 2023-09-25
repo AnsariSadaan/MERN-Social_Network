@@ -1,19 +1,13 @@
- import express  from 'express';
+import express  from 'express';
 const app = express();
 import mongoose from 'mongoose';
-import cors from 'cors';
 import dotenv from "dotenv"
 import routerAuth from './routes/auth.js';
 import routerPost from './routes/post.js';
 import routerUser from './routes/user.js';
 
 const PORT = 5000;
-dotenv.config()
-app.use(cors({ origin: 'https://social-network-blond.vercel.app' }));
-app.use(express.json());
-app.use(routerAuth);
-app.use(routerPost);
-app.use(routerUser);
+dotenv.config();
 
 const allowedOrigins = [
     'https://social-network-blond.vercel.app',
@@ -33,12 +27,15 @@ app.use((req, res, next) => {
     next();
 });
 
-
+app.use(express.json());
+app.use(routerAuth);
+app.use(routerPost);
+app.use(routerUser);
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Database Connected Successfully"))
     .catch((err) => { console.log(err) })
 
 app.listen(PORT,()=>{
-    console.log("SERVER RUNNING ON:",PORT) //Terminal
+    console.log("SERVER RUNNING ON:",PORT)
 })
