@@ -9,9 +9,7 @@ import routerUser from './routes/user.js';
 
 const PORT = 5000;
 dotenv.config()
-app.use(cors({
-    origin: 'https://social-network-nine-pink.vercel.app'
-}));
+app.use(cors({ origin: 'https://social-network-blond.vercel.app' }));
 app.use(express.json());
 app.use(routerAuth);
 app.use(routerPost);
